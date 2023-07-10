@@ -32,6 +32,8 @@ public class FeedbackAPI extends NotSecureBankAPI {
         String response = "";
         JSONObject myJson = new JSONObject();
         try {
+            // Con il metodo sanitizeHtmlWithRegex si dovrebbe eliminare la possibilità di XSS (reflected o stored)
+            // il metodo nel caso riconosca un pattern riconducibile ad uno script ritorna stringa vuota
             myJson = new JSONObject(ServletUtil.sanitizeHtmlWithRegex(bodyJSON));
         } catch (Exception e) {
             LOG.error(e.toString());
